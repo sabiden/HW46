@@ -69,7 +69,22 @@ public class RunMed {
      *****************************************************/
     public void insert( int addVal )
     {   
-        if (sizeleft >= sizeright) {
+	if(rightHeap.isEmpty()){
+	    rightHeap.add(addVal);
+	    sizeright += 1;
+	    return;
+	}
+	if(sizeleft == sizeright){
+	    if (addVal > leftHeap.peekMax()){
+		leftHeap.add(addVal);
+		sizeleft += 1;
+	    }
+	    else{
+		rightHeap.add(addVal);
+		sizeright += 1;
+	    }
+	}
+        if (sizeleft > sizeright) {
             rightHeap.add(addVal);
             sizeright += 1;
         }
