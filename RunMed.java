@@ -13,6 +13,8 @@ public class RunMed {
     //instance vars
     private ALMaxHeap leftHeap;  //for lower range of dataset
     private ALMinHeap rightHeap; //for upper range of dataset
+    private int sizeleft;
+    private int sizeright;
 
 
     /*****************************************************
@@ -20,7 +22,10 @@ public class RunMed {
      *****************************************************/
     public RunMed() 
     { 
-
+        leftHeap = new ALMaxHeap();
+        rightHeap = new ALMinHeap();
+        sizeleft = 0;
+        sizeright = 0;
     }//O(1)
 
 
@@ -30,7 +35,17 @@ public class RunMed {
      *****************************************************/
     public double getMedian() 
     {
-
+        if (rightHeap.isEmpty()) {
+            return 0;
+        }
+        else if (leftHeap.isEmpty()) {
+            return rightHeap.peekMin();
+        }
+        else{
+            int hi = leftHeap.peekMax();
+            int lo = rightHeap.peekMin();
+            return (double)(hi+lo)/2.0;
+        }
     }//O(1)
 
 
@@ -42,6 +57,14 @@ public class RunMed {
      *****************************************************/
     public void insert( int addVal )
     {   
+        if (sizeleft >= sizeright) {
+            rightHeap.add(addVal);
+            sizeright += 1;
+        }
+        else {
+            leftHeap.add(addVal);
+            sizeleft += 1;
+        }
      }//O(?)
 
 
@@ -52,7 +75,7 @@ public class RunMed {
      *****************************************************/
     public boolean isEmpty() 
     {
-
+        return leftHeap.isEmpty() && rightHeap.isEmpty();
     }//O(?)
 
 
@@ -60,7 +83,7 @@ public class RunMed {
     //main method for testing
     public static void main( String[] args ) {
 
-	/*~~~V~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~V~~~
+
         RunMed med = new RunMed();
         med.insert(1);
 	System.out.println( med.getMedian() ); //1
@@ -72,7 +95,7 @@ public class RunMed {
 	System.out.println( med.getMedian() ); //4
         med.insert(9);
 	System.out.println( med.getMedian() ); //5
-	~~~~~|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~*/
+
 
     }//end main()
 
