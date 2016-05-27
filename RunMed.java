@@ -41,9 +41,21 @@ public class RunMed {
         else if (leftHeap.isEmpty()) {
             return rightHeap.peekMin();
         }
-        else{
+	else if (sizeleft > sizeright){
+	    //System.out.println(leftHeap);
+	    return rightHeap.peekMin();
+	}
+	else if (sizeright > sizeleft){ 
+	    //System.out.println("v~~~~~~~~~~~~v");
+	    //System.out.println(rightHeap);
+	    //System.out.println("^~~~~~~~~~~~~^");
+	    return leftHeap.peekMax();
+	}
+	else{
             int hi = leftHeap.peekMax();
+	    // System.out.println(hi);
             int lo = rightHeap.peekMin();
+	    // System.out.println((hi + lo)/2.0);
             return (double)(hi+lo)/2.0;
         }
     }//O(1)
