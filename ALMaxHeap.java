@@ -18,6 +18,11 @@ public class ALMaxHeap {
 	_heap = new ArrayList<Integer>();
     }
 
+    
+    public int size(){
+	return _heap.size();
+    }
+
 
 
     /*****************************************************

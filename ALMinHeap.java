@@ -19,6 +19,10 @@ public class ALMinHeap {
     }
 
 
+    public int size(){
+	return _heap.size();
+    }
+
 
     /*****************************************************
      * toString()  ---  overrides inherited method
